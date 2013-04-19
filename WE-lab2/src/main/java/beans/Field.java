@@ -5,191 +5,148 @@
 package beans;
 
 /**
- * 
+ *
  * @author gruppe 33
  *
  */
 public class Field {
 
-	private int fieldId, home, first, last, win, playerId;
-	private String imgPath, descript, baseDescript;
-	private User user;
+    private int fieldId, start, finish, playerId;
+    private String imgPath, description, baseDescription;
+    private User user;
 
-	public Field(int fieldId) {
-		this.fieldId = fieldId;
-		this.home = 0;
-		this.first = 0;
-		this.last = 0;
-		this.win = 0;
-		this.playerId = 0;
-		this.imgPath = "img/field.png";
-		this.descript = "Feld " + this.fieldId;
-		this.baseDescript = this.descript;
-		this.user = null;
-	}
+    public Field(int fieldId) {
+        this.fieldId = fieldId;
+        this.start = 0;
+        this.finish = 0;
+        this.playerId = 0;
+        this.imgPath = "img/empty_road.png";
+        this.description = "Feld " + this.fieldId;
+        this.baseDescription = this.description;
+        this.user = null;
+    }
 
-	public Field(int fieldId, int start, int first, int last, int win,
-			int playerId, String imgPath, String descript, String baseDescript,
-			User user) {
-		this.fieldId = fieldId;
-		this.home = start;
-		this.first = first;
-		this.last = last;
-		this.win = win;
-		this.playerId = playerId;
-		this.imgPath = imgPath;
-		this.descript = descript;
-		this.baseDescript = baseDescript;
-		this.user = user;
-	}
+    public Field(int fieldId, int start, int finish, int playerId, String imgPath, String description, String baseDescription,
+            User user) {
+        this.fieldId = fieldId;
+        this.start = start;
+        this.finish = finish;
+        this.playerId = playerId;
+        this.imgPath = imgPath;
+        this.description = description;
+        this.baseDescription = baseDescription;
+        this.user = user;
+    }
 
-	/**
-	 * @return the fieldId
-	 */
-	public int getFieldId() {
-		return fieldId;
-	}
+    /**
+     * @return the fieldId
+     */
+    public int getFieldId() {
+        return fieldId;
+    }
 
-	/**
-	 * @param fieldId
-	 *            the fieldId to set
-	 */
-	public void setFieldId(int fieldId) {
-		this.fieldId = fieldId;
-	}
+    /**
+     * @param fieldId the fieldId to set
+     */
+    public void setFieldId(int fieldId) {
+        this.fieldId = fieldId;
+    }
 
-	/**
-	 * @return the home
-	 */
-	public int getHome() {
-		return home;
-	}
+    /**
+     * @return the start
+     */
+    public int getStart() {
+        return start;
+    }
 
-	/**
-	 * @param home
-	 *            the home to set
-	 */
-	public void setHome(int home) {
-		this.home = home;
-	}
+    /**
+     * @param start the start to set
+     */
+    public void setStart(int start) {
+        this.start = start;
+    }
 
-	/**
-	 * @return the first
-	 */
-	public int getFirst() {
-		return first;
-	}
+    /**
+     * @return the finish
+     */
+    public int getFinish() {
+        return finish;
+    }
 
-	/**
-	 * @param first
-	 *            the first to set
-	 */
-	public void setFirst(int first) {
-		this.first = first;
-	}
+    /**
+     * @param finish the finish to set
+     */
+    public void setFinish(int finish) {
+        this.finish = finish;
+    }
 
-	/**
-	 * @return the last
-	 */
-	public int getLast() {
-		return last;
-	}
+    /**
+     * @return the playerId
+     */
+    public int getPlayerId() {
+        return playerId;
+    }
 
-	/**
-	 * @param last
-	 *            the last to set
-	 */
-	public void setLast(int last) {
-		this.last = last;
-	}
+    /**
+     * @param playerId the playerId to set
+     */
+    public void setPlayerId(int playerId) {
+        this.playerId = playerId;
+    }
 
-	/**
-	 * @return the win
-	 */
-	public int getWin() {
-		return win;
-	}
+    /**
+     * @return the imgPath
+     */
+    public String getImgPath() {
+        return imgPath;
+    }
 
-	/**
-	 * @param win
-	 *            the win to set
-	 */
-	public void setWin(int win) {
-		this.win = win;
-	}
+    /**
+     * @param imgPath the imgPath to set
+     */
+    public void setImgPath(String imgPath) {
+        this.imgPath = imgPath;
+    }
 
-	/**
-	 * @return the playerId
-	 */
-	public int getPlayerId() {
-		return playerId;
-	}
+    /**
+     * @return the description
+     */
+    public String getDescription() {
+        return description;
+    }
 
-	/**
-	 * @param playerId
-	 *            the playerId to set
-	 */
-	public void setPlayerId(int playerId) {
-		this.playerId = playerId;
-	}
+    /**
+     * @param description the description to set
+     */
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-	/**
-	 * @return the imgPath
-	 */
-	public String getImgPath() {
-		return imgPath;
-	}
+    /**
+     * @return the baseDescription
+     */
+    public String getBaseDescription() {
+        return baseDescription;
+    }
 
-	/**
-	 * @param imgPath
-	 *            the imgPath to set
-	 */
-	public void setImgPath(String imgPath) {
-		this.imgPath = imgPath;
-	}
+    /**
+     * @param baseDescription the baseDescription to set
+     */
+    public void setBaseDescription(String baseDescription) {
+        this.baseDescription = baseDescription;
+    }
 
-	/**
-	 * @return the descript
-	 */
-	public String getDescript() {
-		return descript;
-	}
+    /**
+     * @return the user
+     */
+    public User getUser() {
+        return user;
+    }
 
-	/**
-	 * @param descript
-	 *            the descript to set
-	 */
-	public void setDescript(String descript) {
-		this.descript = descript;
-	}
-
-	/**
-	 * @return the baseDescript
-	 */
-	public String getBaseDescript() {
-		return baseDescript;
-	}
-
-	/**
-	 * @param baseDescript
-	 *            the baseDescript to set
-	 */
-	public void setBaseDescript(String baseDescript) {
-		this.baseDescript = baseDescript;
-	}
-
-	/**
-	 * @return the user
-	 */
-	public User getUser() {
-		return user;
-	}
-
-	/**
-	 * @param user
-	 *            the player to set
-	 */
-	public void setUser(User user) {
-		this.user = user;
-	}
+    /**
+     * @param user the user to set
+     */
+    public void setUser(User user) {
+        this.user = user;
+    }
 }
