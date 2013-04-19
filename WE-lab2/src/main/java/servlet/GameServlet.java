@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller;
+package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -38,13 +38,13 @@ public class GameServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet GameServlet</title>");            
+            out.println("<title>Servlet GameServlet</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet GameServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
-        } finally {            
+        } finally {
             out.close();
         }
     }
