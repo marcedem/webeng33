@@ -4,21 +4,28 @@
     Author     : edem
 --%>
 
-
+<%-- 
 <%@page import="java.util.Iterator"%>
 <%@page import="beans.Field"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+--%>
 <?xml version="1.0" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
     "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<%--
+
 <jsp:useBean id="gameInfo" class="service.GameService" scope="session"/> 
 <jsp:setProperty name="gameInfo" property="*"/>
 <jsp:useBean id="wuerfel" class="beans.Dice" scope="session"/>
 <jsp:setProperty name="wuerfel" property="*"/>
 <jsp:useBean id="fieldMap" class="beans.Field" scope="session"/>
 <jsp:setProperty name="fieldMap" property="*"/>
+
+--%>
+
 <html xmlns="http://www.w3.org/1999/xhtml"  xml:lang="de" lang="de">
     <head>
         
