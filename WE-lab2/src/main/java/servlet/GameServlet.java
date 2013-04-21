@@ -31,6 +31,10 @@ import service.GameService;
 @WebServlet(name = "GameServlet", urlPatterns = {"/GameServlet"})
 public class GameServlet extends HttpServlet {
 
+    public GameServlet() {
+        super();
+    }
+
     /**
      * Processes requests for both HTTP
      * <code>GET</code> and
@@ -44,6 +48,7 @@ public class GameServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+
         PrintWriter out = response.getWriter();
         try {
             /* TODO output your page here. You may use following sample code. */
@@ -59,36 +64,76 @@ public class GameServlet extends HttpServlet {
         } finally {
             out.close();
         }
+
+
+        HttpSession session = request.getSession(true);
+        GameService gameData = (GameService) session.getAttribute("gameData");
+        if (gameData == null) {
+            gameData = new GameService();
+        }
+
+        if (!gameData.isInitialized()) {
+            // Set the Player
+            ArrayList<User> users = new ArrayList<User>();
+            User user1 = new User();
+            user1.setId(1);
+            user1.setName("Player");
+            users.add(user1);
+            User user2 = new User();
+            user2.setId(2);
+            user2.setName("Computer");
+            users.add(user2);
+            gameData.init(users);
+        }
+
+        if (request.getParameter("reset") != null) {
+            gameData = new GameService();
+        } else {
+            // player's turn
+            if (gameData.isPlayersTurn()) {
+                gameData.rollPlayerDice();
+
+                if (gameData.isPlayersTurn()) {
+                    session.setAttribute("gameData", gameData);
+                    response.sendRedirect("table.jsp");
+                    return;
+                }
+            }
+
+            // computer's turn
+            if (!gameData.isPlayersTurn() && !gameData.isGameOver()) {
+                gameData.rollComputerDice();
+
+                if (!gameData.isPlayersTurn()) {
+                    RequestDispatcher dispatcher = getServletContext()
+                            .getRequestDispatcher("/GameServlet");
+                    dispatcher.forward(request, response);
+                    return;
+                }
+            }
+        }
+        session.setAttribute("gameData", gameData);
+        response.sendRedirect("table.jsp");
+
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
-     * Handles the HTTP
-     * <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+     * response)
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request,
+            HttpServletResponse response) throws ServletException, IOException {
         processRequest(request, response);
     }
 
     /**
-     * Handles the HTTP
-     * <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+     * response)
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request,
+            HttpServletResponse response) throws ServletException, IOException {
         processRequest(request, response);
     }
 
