@@ -38,7 +38,7 @@ public class FieldService {
     
     private void initStart() {
 
-        this.raceTrack.get(1).setStart(1);
+        this.raceTrack.get(1).setStart(true);
         this.raceTrack.get(1).setBaseDescription(
                 "Feld " + 1 + ": Start");
         this.raceTrack.get(1).setImgPath("img/start_road.png");
@@ -48,7 +48,7 @@ public class FieldService {
 
     private void initFinish() {
 
-        this.raceTrack.get(7).setFinish(7);
+        this.raceTrack.get(7).setFinish(true);
         this.raceTrack.get(7).setBaseDescription(
                 "Feld " + 7 + ": Zielfeld");
         this.raceTrack.get(7).setImgPath("img/finish_road.png");
@@ -60,28 +60,30 @@ public class FieldService {
 
         this.raceTrack.get(2).setImgPath("img/empty_road.png");
         this.raceTrack.get(2).setBaseDescription(
-                "Feld " + 2 + ": Leere Straße");
-        this.raceTrack.get(2).setDescription("Feld " + 2 + ": Zielfeld");
+                "Feld " + 2 + ": Leere Strasse");
+        this.raceTrack.get(2).setDescription("Feld " + 2 + ": Leere Strasse");
 
         this.raceTrack.get(4).setImgPath("img/empty_road.png");
         this.raceTrack.get(4).setBaseDescription(
                 "Feld " + 4 + ": Leere Straße");
-        this.raceTrack.get(4).setDescription("Feld " + 4 + ": Zielfeld");
+        this.raceTrack.get(4).setDescription("Feld " + 4 + ": Leere Strasse");
 
         this.raceTrack.get(5).setImgPath("img/empty_road.png");
         this.raceTrack.get(5).setBaseDescription(
                 "Feld " + 5 + ": Leere Straße");
-        this.raceTrack.get(5).setDescription("Feld " + 5 + ": Zielfeld");
+        this.raceTrack.get(5).setDescription("Feld " + 5 + ": Leere Strasse");
 
     }
 
     private void initOilFields() {
 
+        this.raceTrack.get(3).setOil(true);
         this.raceTrack.get(3).setImgPath("img/oil_road.png");
         this.raceTrack.get(3).setBaseDescription(
                 "Feld " + 3 + ": Oelfeld");
         this.raceTrack.get(3).setDescription("Feld " + 3 + ": Oelfeld");
 
+        this.raceTrack.get(6).setOil(true);
         this.raceTrack.get(6).setImgPath("img/oil_road.png");
         this.raceTrack.get(6).setBaseDescription(
                 "Feld " + 6 + ": Oelfeld");

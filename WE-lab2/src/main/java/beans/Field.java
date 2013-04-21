@@ -11,14 +11,16 @@ package beans;
  */
 public class Field {
 
-    private int fieldId, start, finish, playerId;
+    private int fieldId, playerId;
+    private boolean start, finish, oil;
     private String imgPath, description, baseDescription;
     private User user;
 
     public Field(int fieldId) {
         this.fieldId = fieldId;
-        this.start = 0;
-        this.finish = 0;
+        this.start = false;
+        this.finish = false;
+        this.oil = false;
         this.playerId = 0;
         this.imgPath = "img/empty_road.png";
         this.description = "Feld " + this.fieldId;
@@ -26,11 +28,12 @@ public class Field {
         this.user = null;
     }
 
-    public Field(int fieldId, int start, int finish, int playerId, String imgPath, String description, String baseDescription,
+    public Field(int fieldId, boolean start, boolean finish, boolean oil, int playerId, String imgPath, String description, String baseDescription,
             User user) {
         this.fieldId = fieldId;
         this.start = start;
         this.finish = finish;
+        this.oil = oil;
         this.playerId = playerId;
         this.imgPath = imgPath;
         this.description = description;
@@ -53,34 +56,6 @@ public class Field {
     }
 
     /**
-     * @return the start
-     */
-    public int getStart() {
-        return start;
-    }
-
-    /**
-     * @param start the start to set
-     */
-    public void setStart(int start) {
-        this.start = start;
-    }
-
-    /**
-     * @return the finish
-     */
-    public int getFinish() {
-        return finish;
-    }
-
-    /**
-     * @param finish the finish to set
-     */
-    public void setFinish(int finish) {
-        this.finish = finish;
-    }
-
-    /**
      * @return the playerId
      */
     public int getPlayerId() {
@@ -92,6 +67,48 @@ public class Field {
      */
     public void setPlayerId(int playerId) {
         this.playerId = playerId;
+    }
+
+    /**
+     * @return the start
+     */
+    public boolean isStart() {
+        return start;
+    }
+
+    /**
+     * @param start the start to set
+     */
+    public void setStart(boolean start) {
+        this.start = start;
+    }
+
+    /**
+     * @return the finish
+     */
+    public boolean isFinish() {
+        return finish;
+    }
+
+    /**
+     * @param finish the finish to set
+     */
+    public void setFinish(boolean finish) {
+        this.finish = finish;
+    }
+
+    /**
+     * @return the oil
+     */
+    public boolean isOil() {
+        return oil;
+    }
+
+    /**
+     * @param oil the oil to set
+     */
+    public void setOil(boolean oil) {
+        this.oil = oil;
     }
 
     /**
