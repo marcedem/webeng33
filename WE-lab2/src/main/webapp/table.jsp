@@ -26,6 +26,19 @@
         <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1" />
         <link rel="stylesheet" type="text/css" href="styles/screen.css" />
         <script src="js/jquery.js" type="text/javascript"></script>
+     <script language="javascript">
+
+            <!-- JavaScript Code fuer Browser, die kein Scripting unterstuetzen ausblenden
+
+
+            // JavaScript Funktion zum Anzeigen des Textes
+            function callServlet()
+            {
+                document.location.href = "GameServlet?action=wuerfeln"; 
+            }
+
+            // Ende der JavaScript Sektion -->
+        </script>                            
     </head>
     <body>
         <div id="container">
