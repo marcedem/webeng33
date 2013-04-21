@@ -76,7 +76,7 @@ public class TimerService {
 	/**
 	 * @param startTime the statTime to set
 	 */
-	public void setStatTime(Date startTime) {
+	public void setStartTime(Date startTime) {
 		this.startTime = startTime;
 	}
 	
