@@ -210,6 +210,20 @@ public class FieldService {
 
     }
 
+    public int getLeader() {
+        int playerField = this.player.getFieldId();
+        int computerField = this.computer.getFieldId();
+        
+        if (playerField > computerField) {
+            return this.player.getUserId();
+        } else if (playerField < computerField) {
+            return this.computer.getUserId();
+        }
+        
+        
+        return 0;
+    }
+
     /**
      * @return the raceTrack
      */
