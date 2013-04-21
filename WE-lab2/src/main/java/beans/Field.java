@@ -11,7 +11,7 @@ package beans;
  */
 public class Field {
 
-    private int fieldId, playerId;
+    private int fieldId, playerIdLeft, playerIdRight;
     private boolean start, finish, oil;
     private String imgPath, description, baseDescription;
     private User user;
@@ -21,20 +21,22 @@ public class Field {
         this.start = false;
         this.finish = false;
         this.oil = false;
-        this.playerId = 0;
+        this.playerIdLeft = 0;
+        this.playerIdRight = 0;
         this.imgPath = "img/empty_road.png";
         this.description = "Feld " + this.fieldId;
         this.baseDescription = this.description;
         this.user = null;
     }
 
-    public Field(int fieldId, boolean start, boolean finish, boolean oil, int playerId, String imgPath, String description, String baseDescription,
+    public Field(int fieldId, boolean start, boolean finish, boolean oil, int playerIdLeft, int playerIdRight, String imgPath, String description, String baseDescription,
             User user) {
         this.fieldId = fieldId;
         this.start = start;
         this.finish = finish;
         this.oil = oil;
-        this.playerId = playerId;
+        this.playerIdLeft = playerIdLeft;
+        this.playerIdRight = playerIdRight;
         this.imgPath = imgPath;
         this.description = description;
         this.baseDescription = baseDescription;
@@ -56,17 +58,31 @@ public class Field {
     }
 
     /**
-     * @return the playerId
+     * @return the playerIdLeft
      */
-    public int getPlayerId() {
-        return playerId;
+    public int getPlayerIdLeft() {
+        return playerIdLeft;
     }
 
     /**
-     * @param playerId the playerId to set
+     * @param playerIdLeft the playerIdLeft to set
      */
-    public void setPlayerId(int playerId) {
-        this.playerId = playerId;
+    public void setPlayerIdLeft(int playerIdLeft) {
+        this.playerIdLeft = playerIdLeft;
+    }
+
+    /**
+     * @return the playerIdRight
+     */
+    public int getPlayerIdRight() {
+        return playerIdRight;
+    }
+
+    /**
+     * @param playerIdRight the playerIdRight to set
+     */
+    public void setPlayerIdRight(int playerIdRight) {
+        this.playerIdRight = playerIdRight;
     }
 
     /**
