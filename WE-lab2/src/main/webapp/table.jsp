@@ -162,7 +162,7 @@
                                         %>
                                 </fieldset>
                             </form>
-                            <img id="diceImage" src="img/wuerfel1.png" alt="W&uuml;rfel mit einer Eins" />	
+                            <!--img id="diceImage" src="img/wuerfel1.png" alt="W&uuml;rfel mit einer Eins" /-->	
                         </a>
                     </div>
                 </div>
