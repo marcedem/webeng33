@@ -78,8 +78,7 @@ public class GameService {
     public void rollComputerDice() {
         this.getDiceService().rollComputerDice();
 
-        
-            this.setPlayersTurn(true);
+        this.setPlayersTurn(true);
         
 
         if (this.getFieldService().moveCar(2, this.getDiceService().getComputerDice().getRoll())) {
@@ -228,7 +227,7 @@ public class GameService {
     /**
      * @return the users
      */
-    public ArrayList<User> getSpielerUsers() {
+    public ArrayList<User> getUsers() {
         return users;
     }
 

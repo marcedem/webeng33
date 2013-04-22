@@ -1,5 +1,10 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <jsp:useBean id="gameInfo" class="service.GameService" scope="session" />
+<jsp:setProperty name="gameInfo" property="*"/>
+
+<jsp:useBean id="fieldInfo" class="service.FieldService" scope="session" />
+<jsp:setProperty name="fieldInfo" property="*"/>
 
 <?xml version="1.0" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
@@ -69,14 +74,11 @@
                             <tr>
                                 <th id="leaderLabel" class="label">F&uuml;hrender</th>
                                 
-                                <% if (gameInfo.getLeader() != null) {
-                                        %>
+                                <% if (gameInfo.getLeader() != null) {%>
                                         <td><%= gameInfo.getLeader().getName() %></td>
-                                        <% } else { %>
-                                        <td>Mehrere</td>
-                                        <%
-                                }
-                                %>
+                                <% } else { %>
+                                    <td>mehrere</td>
+                                <% }%>
 
                             </tr>
                             
@@ -92,7 +94,7 @@
                             
                             <tr>
                                 <th id="computerScoreLabel" class="label">W&uuml;rfelergebnis <em>Super C</em></th>
-                                <td id="computerScore" class="data"><%= gameInfo.getDiceService().toString() %></td>
+                                <td id="computerScore" class="data"><%= gameInfo.getDiceService() %></td>
                             </tr>
                             
                         </table>  
@@ -101,8 +103,8 @@
                            
                                 <% for (int i=0; i < gameInfo.getPlayerCount(); i++) { %> 
                             <tr>
-                                <th id="player1NameLabel" class="label">Spieler <%= gameInfo.getSpielerUsers().get(i).getId() %></th>
-                                <td id="player1Name" class="data"><%= gameInfo.getSpielerUsers().get(i).getName() %></td>
+                                <th id="player1NameLabel" class="label">Spieler <%= gameInfo.getUsers().get(i).getId() %></th>
+                                <td id="player1Name" class="data"><%= gameInfo.getUsers().get(2).getName() %></td>
                             </tr>
                             <% } %>
                             <!-- tr>
@@ -116,7 +118,7 @@
                         <h2 class="accessibility">Spielbereich</h2>
                         <ol id="road">
                             <li id="start_road">
-                                <span class="accessibility">Startfeld</span>
+                                <span class="accessibility"><%=gameInfo.getFieldService().getStartField()%></span>
                             </li>
                             <li class="empty_road" id="road_1">
                                 <span class="accessibility">Feld 2</span>
@@ -140,7 +142,8 @@
                                 <span class="accessibility">Feld 6</span>
                             </li>
                             <li id="finish_road">
-                                <span class="accessibility">Zielfeld</span>
+                                 <span class="accessibility"><%= fieldInfo.getFinishField()%></span>
+                                <!--span class="accessibility">Zielfeld</span-->
                             </li>
                         </ol>
                     </div>
@@ -151,6 +154,7 @@
                             <form action="GameServlet" method="get">
                                     <fieldset>
                                            <% if (!gameInfo.isGameOver()) {
+                                               
                                                     %>
                                                     <input type="image" name="wuerfel" title="W&uuml;rfel" src="<%= gameInfo.getDiceService().getPlayerDice().getImgPath() %>" alt="W&uuml;rfel"/>
                                                     <%
