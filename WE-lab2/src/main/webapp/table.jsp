@@ -23,19 +23,7 @@
         <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1" />
         <link rel="stylesheet" type="text/css" href="styles/screen.css" />
         <script src="js/jquery.js" type="text/javascript"></script>
-        <script language="javascript">
-
-   <!-- JavaScript Code fuer Browser, die kein Scripting unterstuetzen ausblenden
-
-
-            // JavaScript Funktion zum Anzeigen des Textes
-           // function callServlet()
-           // {
-            //    document.location.href = "GameServlet?action=wuerfeln";
-           // }
-
-            // Ende der JavaScript Sektion -->
-        </script>                            
+                             
     </head>
     <body>
         <div id="container">
@@ -54,7 +42,7 @@
                 <div id="main-area">
                     <div class="info">
 
-                        <form action="GameServlet" method="get">
+                        <form action="servlet.GameServlet" method="get">
                             
                                 <% if (gameInfo.isGameOver()) { %>
                                 <input type="submit" name="reset" value="Restart Game" />
@@ -144,19 +132,21 @@
                     <div class="player">
                         <h2 class="accessibility">W&uuml;rfelbereich</h2>
                         <span class="accessibility">An der Reihe ist</span><div id="currentPlayerName">Super Mario</div>
-                        <a id="dice" href="#" tabindex="4">
-                            
+                        <span title='aktueller Spieler'><%= gameInfo.getCurrentPlayer() %></span>
                             <form action="GameServlet" method="get">
                                 <fieldset>
-                                    <% if (!gameInfo.isGameOver()) {%>
-                                        <input type="image" name="wuerfel" title="W&uuml;rfel" src="<%= gameInfo.getDiceService().getPlayerDice().getImgPath()%>" alt="W&uuml;rfel"/>
-                                    <%} else {%>
-                                        <img id="diceImage" src="img/wuerfel1.png" alt="W&uuml;rfel mit einer Eins" />
-                                    <%}%>
-                                </fieldset>
-                            </form>
-                            
-                        </a>
+                                    <% if (!gameInfo.isGameOver()) {
+                                    %>
+                                    <input type="image" name="wuerfel" title="W&uuml;rfel" src="<%= gameInfo.getDiceService().getPlayerDice().getImgPath() %>" alt="W&uuml;rfel"/>
+                                    <%
+                                    } else {
+                                    %>
+                                    <img name="wuerfel" title="W&uuml;rfel" src="img/wuerfel0.png" alt="W&uuml;rfel"/>
+                                    <%
+                                    }
+                                    %>
+                                 </fieldset>
+                           </form>   
                     </div>
                 </div>
             </div>
