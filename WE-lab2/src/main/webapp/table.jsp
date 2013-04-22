@@ -1,21 +1,10 @@
-<%-- 
-    Document   : table
-    Created on : Apr 20, 2013, 7:52:22 PM
-    Author     : edem
---%>
-
- 
-<%@page import="java.util.Iterator"%>
-<%@page import="beans.Field"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+<jsp:useBean id="gameInfo" class="service.GameService" scope="session" />
 
 <?xml version="1.0" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
     "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-<%----%>
+<%----
 
 <jsp:useBean id="gameInfo" class="service.GameService" scope="session"/> 
 <jsp:setProperty name="gameInfo" property="*"/>
@@ -24,7 +13,7 @@
 <jsp:useBean id="fieldMap" class="beans.Field" scope="session"/>
 <jsp:setProperty name="fieldMap" property="*"/>
 
-<%----%>
+--%>
 
 <html xmlns="http://www.w3.org/1999/xhtml"  xml:lang="de" lang="de">
     <head>
@@ -64,25 +53,65 @@
                 <div id="main-area">
                     <div class="info">
                         
-                        <% if (gameInfo.isGameOver()) {%> 
-                    <form action="GameServlet" method="POST">
-                        <input type="submit" value="Restart Game" accesskey="r"/>
+                       <form action="GameServlet" method="get">
+                    	<fieldset>
+                        	<% if (gameInfo.isGameOver()) {
+                            	%>
+                                <input type="submit" name="reset" value="Restart Game" />
+                                <%
+                            }
+                            %>
+                        </fieldset>
                     </form>
-                        <% }%>
                         
                         <h2>Spielinformationen</h2>
                         <table summary="Diese Tabelle zeigt Informationen zum aktuellen Spiel">
-                            <tr><th id="leaderLabel" class="label">F&uuml;hrender</th><td id="leader" class="data"><%= gameInfo.getLeader()%></td></tr>
-                            <tr><th id="roundLabel" class="label">Runde</th><td id="round" class="data"><%= gameInfo.getRound()%></td></tr>
-                            <tr><th id="timeLabel" class="label">Zeit</th><td id="time" class="data"><%= gameInfo.getTime()%></td></tr>
-                            <tr><th id="computerScoreLabel" class="label">W&uuml;rfelergebnis <em>Super C</em></th><td id="computerScore" class="data">3</td></tr>
+                            <tr>
+                                <th id="leaderLabel" class="label">F&uuml;hrender</th>
+                                
+                                <% if (gameInfo.getLeader() != null) {
+                                        %>
+                                        <td><%= gameInfo.getLeader().getName() %></td>
+                                        <% } else { %>
+                                        <td>Mehrere</td>
+                                        <%
+                                }
+                                %>
+
+                            </tr>
+                            
+                            <tr>
+                                <th id="roundLabel" class="label">Runde</th>
+                                <td id="round" class="data"><%= gameInfo.getRound()%></td>
+                            </tr>
+                            
+                            <tr>
+                                <th id="timeLabel" class="label">Zeit</th>
+                                <td id="time" class="data"><%= gameInfo.getTime().toString() %></td>
+                            </tr>
+                            
+                            <tr>
+                                <th id="computerScoreLabel" class="label">W&uuml;rfelergebnis <em>Super C</em></th>
+                                <td id="computerScore" class="data"><%= gameInfo.getDiceService().toString() %></td>
+                            </tr>
+                            
                         </table>  
                         <h2>Spieler</h2>
                         <table summary="Diese Tabelle listet die Namen der Spieler auf">
-                            <tr><th id="player1NameLabel" class="label">Spieler 1</th><td id="player1Name" class="data"><%= gameInfo.getCurrentPlayer()%></td></tr>
-                            <tr><th id="player2NameLabel" class="label">Spieler 2</th><td id="player2Name" class="data"><%= gameInfo.getCurrentPlayer()%></td></tr>
+                           
+                                <% for (int i=0; i < gameInfo.getPlayerCount(); i++) { %> 
+                            <tr>
+                                <th id="player1NameLabel" class="label">Spieler <%= gameInfo.getSpielerUsers().get(i).getId() %></th>
+                                <td id="player1Name" class="data"><%= gameInfo.getSpielerUsers().get(i).getName() %></td>
+                            </tr>
+                            <% } %>
+                            <!-- tr>
+                                <th id="player2NameLabel" class="label">Spieler 2</th>
+                                <td id="player2Name" class="data">< %= gameInfo.getCurrentPlayer()%></td>
+                            </tr -->
                         </table>    	  
                     </div>
+                            
                     <div class="field">
                         <h2 class="accessibility">Spielbereich</h2>
                         <ol id="road">
@@ -117,8 +146,22 @@
                     </div>
                     <div class="player">
                         <h2 class="accessibility">W&uuml;rfelbereich</h2>
-                        <span class="accessibility">An der Reihe ist</span><div id="currentPlayerName">Super Mario</div>
+                        <span class="accessibility">An der Reihe ist</span><div id="currentPlayerName"><%= gameInfo.getCurrentPlayer() %></div>
                         <a id="dice" href="#" tabindex="4">
+                            <form action="GameServlet" method="get">
+                                    <fieldset>
+                                           <% if (!gameInfo.isGameOver()) {
+                                                    %>
+                                                    <input type="image" name="wuerfel" title="W&uuml;rfel" src="<%= gameInfo.getDiceService().getPlayerDice().getImgPath() %>" alt="W&uuml;rfel"/>
+                                                    <%
+                                            } else {
+                                                    %>
+                                                    <img id="diceImage" src="img/wuerfel1.png" alt="W&uuml;rfel mit einer Eins" />
+                                                    <%
+                                            }
+                                        %>
+                                </fieldset>
+                            </form>
                             <img id="diceImage" src="img/wuerfel1.png" alt="W&uuml;rfel mit einer Eins" />	
                         </a>
                     </div>

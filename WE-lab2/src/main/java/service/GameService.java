@@ -228,7 +228,7 @@ public class GameService {
     /**
      * @return the users
      */
-    public ArrayList<User> getUsers() {
+    public ArrayList<User> getSpielerUsers() {
         return users;
     }
 
