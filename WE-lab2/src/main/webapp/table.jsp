@@ -104,6 +104,13 @@
                     <div class="field">
                         <h2 class="accessibility">Spielbereich</h2>
                         <ol id="road">
+                            <% for (int i = 1; i <= 7; i++) {									
+									%>
+									<li><img id='field<%= gameInfo.getFieldService().getFields().get(i).getFieldId() %>' src='<%= gameInfo.getFieldService().getFields().get(i).getImgPath() %>' alt='<%= gameData.getBoardService().getFields().get(i).getDescript() %>' title='<%= gameData.getBoardService().getFields().get(i).getDescript() %>' /></li>
+									<%
+								}
+								%>
+                            
                             <li id="start_road">
                                 <span class="accessibility"><%=gameInfo.getFieldService().getStartField()%></span>
                             </li>
