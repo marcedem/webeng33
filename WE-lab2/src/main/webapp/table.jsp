@@ -22,20 +22,20 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml"  xml:lang="de" lang="de">
     <head>
-        
-       <title xml:lang="de">Formel 0 - Spielen</title>
+
+        <title xml:lang="de">Formel 0 - Spielen</title>
         <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1" />
         <link rel="stylesheet" type="text/css" href="styles/screen.css" />
         <script src="js/jquery.js" type="text/javascript"></script>
-     <script language="javascript">
+        <script language="javascript">
 
-            <!-- JavaScript Code fuer Browser, die kein Scripting unterstuetzen ausblenden
+   <!-- JavaScript Code fuer Browser, die kein Scripting unterstuetzen ausblenden
 
 
             // JavaScript Funktion zum Anzeigen des Textes
             function callServlet()
             {
-                document.location.href = "GameServlet?action=wuerfeln"; 
+                document.location.href = "GameServlet?action=wuerfeln";
             }
 
             // Ende der JavaScript Sektion -->
@@ -57,23 +57,22 @@
                 </div>
                 <div id="main-area">
                     <div class="info">
-                        
-                       <form action="GameServlet" method="get">
-                    	<fieldset>
-                        	<% if (gameInfo.isGameOver()) {
-                            	%>
+
+                        <form action="GameServlet" method="get">
+                            <fieldset>
+                                <% if (gameInfo.isGameOver()) {
+                                %>
                                 <input type="submit" name="reset" value="Restart Game" />
-                                <%
-                            }
-                            %>
-                        </fieldset>
-                    </form>
-                        
+                                <%                                    }
+                                %>
+                            </fieldset>
+                        </form>
+
                         <h2>Spielinformationen</h2>
                         <table summary="Diese Tabelle zeigt Informationen zum aktuellen Spiel">
                             <tr>
                                 <th id="leaderLabel" class="label">F&uuml;hrender</th>
-                                
+                              
                                 <% if (gameInfo.getLeader() != null) {%>
                                         <td><%= gameInfo.getLeader().getName() %></td>
                                 <% } else { %>
@@ -81,22 +80,23 @@
                                 <% }%>
 
                             </tr>
-                            
+
                             <tr>
                                 <th id="roundLabel" class="label">Runde</th>
                                 <td id="round" class="data"><%= gameInfo.getRound()%></td>
                             </tr>
-                            
+
                             <tr>
                                 <th id="timeLabel" class="label">Zeit</th>
-                                <td id="time" class="data"><%= gameInfo.getTime().toString() %></td>
+                                <td id="time" class="data"><%= gameInfo.getTime().toString()%></td>
                             </tr>
-                            
+
                             <tr>
                                 <th id="computerScoreLabel" class="label">W&uuml;rfelergebnis <em>Super C</em></th>
-                                <td id="computerScore" class="data"><%= gameInfo.getDiceService() %></td>
+
+                                <td id="computerScore" class="data"><%= gameInfo.getDiceService().toString()%></td>
                             </tr>
-                            
+
                         </table>  
                         <h2>Spieler</h2>
                         <table summary="Diese Tabelle listet die Namen der Spieler auf">
@@ -113,7 +113,7 @@
                             </tr -->
                         </table>    	  
                     </div>
-                            
+
                     <div class="field">
                         <h2 class="accessibility">Spielbereich</h2>
                         <ol id="road">
@@ -149,9 +149,10 @@
                     </div>
                     <div class="player">
                         <h2 class="accessibility">W&uuml;rfelbereich</h2>
-                        <span class="accessibility">An der Reihe ist</span><div id="currentPlayerName"><%= gameInfo.getCurrentPlayer() %></div>
+                        <span class="accessibility">An der Reihe ist</span><div id="currentPlayerName"><%= gameInfo.getCurrentPlayer()%></div>
                         <a id="dice" href="#" tabindex="4">
                             <form action="GameServlet" method="get">
+<<<<<<< HEAD
                                     <fieldset>
                                            <% if (!gameInfo.isGameOver()) {
                                                
@@ -164,6 +165,18 @@
                                                     <%
                                             }
                                         %>
+=======
+                                <fieldset>
+                                    <% if (!gameInfo.isGameOver()) {
+                                    %>
+                                    <input type="image" name="wuerfel" title="W&uuml;rfel" src="<%= gameInfo.getDiceService().getPlayerDice().getImgPath()%>" alt="W&uuml;rfel"/>
+                                    <%
+                                    } else {
+                                    %>
+                                    <img id="diceImage" src="img/wuerfel1.png" alt="W&uuml;rfel mit einer Eins" />
+                                    <%                                                        }
+                                    %>
+>>>>>>> 9fccb8effca722674fd00d27b9d5baace473bcb7
                                 </fieldset>
                             </form>
                             <!--img id="diceImage" src="img/wuerfel1.png" alt="W&uuml;rfel mit einer Eins" /-->	
@@ -178,12 +191,12 @@
 
         <script type="text/javascript">
             //<![CDATA[
-            
+
             // call this function once before starting the animations
             function prepareAnimation() {
                 $("#animationDone").remove();
             }
-            
+
             // call this function once after all animations have finished
             function completeAnimation() {
                 var div = $(document.createElement('div'));
@@ -191,12 +204,12 @@
                 div.addClass('hide');
                 $("body").append(div);
             }
-            
+
             $("#dice").click(function() {
                 prepareAnimation();
                 $("#player1").fadeOut(700, function() {
                     $("#player1").appendTo("#start_road");
-                    $("#player1").fadeIn(700,completeAnimation);                    
+                    $("#player1").fadeIn(700, completeAnimation);
                 });
                 return false;
             });
