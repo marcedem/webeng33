@@ -43,9 +43,9 @@ public class TimerService {
 			this.updateDuration();
 			long min = this.duration / 60000;
 			long sec = (this.duration / 1000) % 60;
-			return String.format("%s min, %s sec", min, sec);
+			return String.format("%s min, %s sec");
 		}
-		return "0 min, 0 sec";
+		return (this.duration / 60000) + " : " + ((this.duration / 1000) % 60);
 	}
 	
 	/**

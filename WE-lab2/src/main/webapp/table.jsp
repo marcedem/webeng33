@@ -59,13 +59,11 @@
                     <div class="info">
 
                         <form action="GameServlet" method="get">
-                            <fieldset>
-                                <% if (gameInfo.isGameOver()) {
-                                %>
+                            
+                                <% if (gameInfo.isGameOver()) { %>
                                 <input type="submit" name="reset" value="Restart Game" />
-                                <%                                    }
-                                %>
-                            </fieldset>
+                                <%}%>
+                          
                         </form>
 
                         <h2>Spielinformationen</h2>
@@ -76,7 +74,7 @@
                                 <% if (gameInfo.getLeader() != null) {%>
                                         <td><%= gameInfo.getLeader().getName() %></td>
                                 <% } else { %>
-                                    <td>mehrere</td>
+                                    <td id="mehr" class="data">mehrere</td>
                                 <% }%>
 
                             </tr>
@@ -94,23 +92,16 @@
                             <tr>
                                 <th id="computerScoreLabel" class="label">W&uuml;rfelergebnis <em>Super C</em></th>
 
-                                <td id="computerScore" class="data"><%= gameInfo.getDiceService().toString()%></td>
+                                <td id="computerScore" class="data"><%= gameInfo.getDiceService().getComputerDice().getLastRoll()%></td>
                             </tr>
 
                         </table>  
                         <h2>Spieler</h2>
                         <table summary="Diese Tabelle listet die Namen der Spieler auf">
                            
-                                <% for (int i=0; i < gameInfo.getPlayerCount(); i++) { %> 
-                            <tr>
-                                <th id="player1NameLabel" class="label">Spieler <%= gameInfo.getUsers().get(i).getId() %></th>
-                                <td id="player1Name" class="data"><%= gameInfo.getUsers().get(2).getName() %></td>
-                            </tr>
-                            <% } %>
-                            <!-- tr>
-                                <th id="player2NameLabel" class="label">Spieler 2</th>
-                                <td id="player2Name" class="data">< %= gameInfo.getCurrentPlayer()%></td>
-                            </tr -->
+                            <tr><th id="player1NameLabel" class="label">Spieler 1</th><td id="player1Name" class="data">Super Mario</td></tr>
+                            <tr><th id="player2NameLabel" class="label">Spieler 2</th><td id="player2Name" class="data">Super C</td></tr>
+                        
                         </table>    	  
                     </div>
 
@@ -149,34 +140,15 @@
                     </div>
                     <div class="player">
                         <h2 class="accessibility">W&uuml;rfelbereich</h2>
-                        <span class="accessibility">An der Reihe ist</span><div id="currentPlayerName"><%= gameInfo.getCurrentPlayer()%></div>
+                        <span class="accessibility">An der Reihe ist</span><div id="currentPlayerName">Super Mario</div>
                         <a id="dice" href="#" tabindex="4">
                             <form action="GameServlet" method="get">
-<<<<<<< HEAD
-                                    <fieldset>
-                                           <% if (!gameInfo.isGameOver()) {
-                                               
-                                                    %>
-                                                    <input type="image" name="wuerfel" title="W&uuml;rfel" src="<%= gameInfo.getDiceService().getPlayerDice().getImgPath() %>" alt="W&uuml;rfel"/>
-                                                    <%
-                                            } else {
-                                                    %>
-                                                    <img id="diceImage" src="img/wuerfel1.png" alt="W&uuml;rfel mit einer Eins" />
-                                                    <%
-                                            }
-                                        %>
-=======
                                 <fieldset>
-                                    <% if (!gameInfo.isGameOver()) {
-                                    %>
-                                    <input type="image" name="wuerfel" title="W&uuml;rfel" src="<%= gameInfo.getDiceService().getPlayerDice().getImgPath()%>" alt="W&uuml;rfel"/>
-                                    <%
-                                    } else {
-                                    %>
-                                    <img id="diceImage" src="img/wuerfel1.png" alt="W&uuml;rfel mit einer Eins" />
-                                    <%                                                        }
-                                    %>
->>>>>>> 9fccb8effca722674fd00d27b9d5baace473bcb7
+                                    <% if (!gameInfo.isGameOver()) {%>
+                                        <input type="image" name="wuerfel" title="W&uuml;rfel" src="<%= gameInfo.getDiceService().getPlayerDice().getImgPath()%>" alt="W&uuml;rfel"/>
+                                    <%} else {%>
+                                        <img id="diceImage" src="img/wuerfel1.png" alt="W&uuml;rfel mit einer Eins" />
+                                    <%}%>
                                 </fieldset>
                             </form>
                             <!--img id="diceImage" src="img/wuerfel1.png" alt="W&uuml;rfel mit einer Eins" /-->	
