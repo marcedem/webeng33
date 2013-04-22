@@ -1,7 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <jsp:useBean id="gameInfo" class="service.GameService" scope="session" />
-<jsp:setProperty name="gameInfo" property="*"/>
 
 <?xml version="1.0" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
@@ -30,10 +29,10 @@
 
 
             // JavaScript Funktion zum Anzeigen des Textes
-            function callServlet()
-            {
-                document.location.href = "GameServlet?action=wuerfeln";
-            }
+           // function callServlet()
+           // {
+            //    document.location.href = "GameServlet?action=wuerfeln";
+           // }
 
             // Ende der JavaScript Sektion -->
         </script>                            
@@ -139,7 +138,12 @@
                         <h2 class="accessibility">W&uuml;rfelbereich</h2>
                         <span class="accessibility">An der Reihe ist</span><div id="currentPlayerName">Super Mario</div>
                         <a id="dice" href="#" tabindex="4">
-                            <form action="GameServlet" method="get">
+                            <% if (!gameInfo.isGameOver()) {%>
+                    <img id="diceImage" src="img/wuerfel1.png" alt="W&uuml;rfel mit einer Eins" onclick="callServlet()"/>
+                    <% } else {%>
+                     <img id="diceImage" src="img/wuerfel0.png" alt="W&uuml;rfel mit einer Eins" />
+                    <% }%>
+                            <!--form action="GameServlet" method="get">
                                 <fieldset>
                                     <% if (!gameInfo.isGameOver()) {%>
                                         <input type="image" name="wuerfel" title="W&uuml;rfel" src="<%= gameInfo.getDiceService().getPlayerDice().getImgPath()%>" alt="W&uuml;rfel"/>
@@ -147,8 +151,8 @@
                                         <img id="diceImage" src="img/wuerfel1.png" alt="W&uuml;rfel mit einer Eins" />
                                     <%}%>
                                 </fieldset>
-                            </form>
-                            <!--img id="diceImage" src="img/wuerfel1.png" alt="W&uuml;rfel mit einer Eins" /-->	
+                            </form-->
+                            
                         </a>
                     </div>
                 </div>
