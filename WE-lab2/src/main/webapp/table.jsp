@@ -138,12 +138,8 @@
                         <h2 class="accessibility">W&uuml;rfelbereich</h2>
                         <span class="accessibility">An der Reihe ist</span><div id="currentPlayerName">Super Mario</div>
                         <a id="dice" href="#" tabindex="4">
-                            <% if (!gameInfo.isGameOver()) {%>
-                    <img id="diceImage" src="img/wuerfel1.png" alt="W&uuml;rfel mit einer Eins" onclick="callServlet()"/>
-                    <% } else {%>
-                     <img id="diceImage" src="img/wuerfel0.png" alt="W&uuml;rfel mit einer Eins" />
-                    <% }%>
-                            <!--form action="GameServlet" method="get">
+                            
+                            <form action="GameServlet" method="get">
                                 <fieldset>
                                     <% if (!gameInfo.isGameOver()) {%>
                                         <input type="image" name="wuerfel" title="W&uuml;rfel" src="<%= gameInfo.getDiceService().getPlayerDice().getImgPath()%>" alt="W&uuml;rfel"/>
@@ -151,7 +147,7 @@
                                         <img id="diceImage" src="img/wuerfel1.png" alt="W&uuml;rfel mit einer Eins" />
                                     <%}%>
                                 </fieldset>
-                            </form-->
+                            </form>
                             
                         </a>
                     </div>
