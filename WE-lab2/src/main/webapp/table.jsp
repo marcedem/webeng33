@@ -3,9 +3,6 @@
 <jsp:useBean id="gameInfo" class="service.GameService" scope="session" />
 <jsp:setProperty name="gameInfo" property="*"/>
 
-<jsp:useBean id="fieldInfo" class="service.FieldService" scope="session" />
-<jsp:setProperty name="fieldInfo" property="*"/>
-
 <?xml version="1.0" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
     "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
@@ -133,7 +130,7 @@
                                 <span class="accessibility">Feld 6</span>
                             </li>
                             <li id="finish_road">
-                                 <span class="accessibility"><%= fieldInfo.getFinishField()%></span>
+                                 <span class="accessibility"><%= gameInfo.getFieldService().getFinishField()%></span>
                                 <!--span class="accessibility">Zielfeld</span-->
                             </li>
                         </ol>
